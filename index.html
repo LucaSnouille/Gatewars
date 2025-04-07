@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GateWars Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: #00ffcc;
+            text-align: center;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .resource {
+            font-size: 20px;
+            margin: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #005599;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GateWars - Prototype</h1>
+        <p class="resource">Énergie: <span id="energie">100</span></p>
+        <p class="resource">Naquadah: <span id="naquadah">50</span></p>
+        <p class="resource">Métal: <span id="metal">75</span></p>
+        <button class="button" onclick="construire()">Construire une Mine</button>
+    </div>
+    
+    <script>
+        let energie = 100;
+        let naquadah = 50;
+        let metal = 75;
+
+        function mettreAJour() {
+            document.getElementById("energie").textContent = energie;
+            document.getElementById("naquadah").textContent = naquadah;
+            document.getElementById("metal").textContent = metal;
+        }
+
+        function produire() {
+            energie += 2;
+            naquadah += 1;
+            metal += 1;
+            mettreAJour();
+        }
+
+        function construire() {
+            if (metal >= 20) {
+                metal -= 20;
+                naquadah -= 10;
+                setInterval(produire, 5000); 
+            } else {
+                alert("Pas assez de ressources!");
+            }
+            mettreAJour();
+        }
+
+        setInterval(produire, 5000);
+    </script>
+</body>
+</html>
